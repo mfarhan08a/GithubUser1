@@ -14,6 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        //buildConfigField("String", "KEY", '”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"')
+        buildConfigField("String", "KEY", "\"${properties.getProperty("KEY")}\"")
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,6 +39,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
